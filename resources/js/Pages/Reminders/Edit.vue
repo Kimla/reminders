@@ -26,6 +26,7 @@
                                     :href="route('reminders.destroy', reminder.id)"
                                     method="delete"
                                     class="text-red-600 font-semibold"
+                                    type="button"
                                     as="button"
                                 >
                                     Remove
