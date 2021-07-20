@@ -13,6 +13,8 @@ class ReminderSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\Reminder::factory(10)->create(['user_id' => 2]);
+
         \App\Models\Reminder::factory(10)->create();
     }
 }

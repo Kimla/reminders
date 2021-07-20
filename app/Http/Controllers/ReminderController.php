@@ -60,6 +60,8 @@ class ReminderController extends Controller
      */
     public function edit(Reminder $reminder)
     {
+        $this->authorize('update', $reminder);
+
         return Inertia::render('Reminders/Edit', compact('reminder'));
     }
 
@@ -72,6 +74,8 @@ class ReminderController extends Controller
      */
     public function update(Request $request, Reminder $reminder)
     {
+        $this->authorize('update', $reminder);
+
         $reminder->title = $request->title;
         $reminder->date = $request->date;
 
@@ -88,6 +92,8 @@ class ReminderController extends Controller
      */
     public function destroy(Reminder $reminder)
     {
+        $this->authorize('delete', $reminder);
+
         $reminder->delete();
 
         return redirect('/');
