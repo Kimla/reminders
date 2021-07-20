@@ -15,7 +15,11 @@ class ReminderController extends Controller
      */
     public function index()
     {
-        $reminders = Reminder::orderBy('date')->get();
+        $reminders = auth()
+            ->user()
+            ->reminders()
+            ->orderBy('date')
+            ->get();
 
         return Inertia::render('Reminders/Index', compact('reminders'));
     }
@@ -39,6 +43,7 @@ class ReminderController extends Controller
     public function store(Request $request)
     {
         Reminder::create([
+            'user_id' => auth()->id(),
             'title' => $request->title,
             'date' =>  $request->date
         ]);
@@ -46,16 +51,6 @@ class ReminderController extends Controller
         return redirect('/');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Reminder  $reminder
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reminder $reminder)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -65,6 +60,8 @@ class ReminderController extends Controller
      */
     public function edit(Reminder $reminder)
     {
+        $this->authorize('update', $reminder);
+
         return Inertia::render('Reminders/Edit', compact('reminder'));
     }
 
@@ -77,6 +74,8 @@ class ReminderController extends Controller
      */
     public function update(Request $request, Reminder $reminder)
     {
+        $this->authorize('update', $reminder);
+
         $reminder->title = $request->title;
         $reminder->date = $request->date;
 
@@ -93,6 +92,8 @@ class ReminderController extends Controller
      */
     public function destroy(Reminder $reminder)
     {
+        $this->authorize('delete', $reminder);
+
         $reminder->delete();
 
         return redirect('/');

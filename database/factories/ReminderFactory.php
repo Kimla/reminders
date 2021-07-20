@@ -22,6 +22,7 @@ class ReminderFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => 1,
             'title' => $this->faker->text(20),
             'date' => $this->faker->dateTimeBetween($startDate = 'now', $endDate = '+6 months', $timezone = null),
             'description' => $this->faker->text(2000),
