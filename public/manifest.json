@@ -1,0 +1,14 @@
+{
+    "name": "Reminders",
+    "short_name": "Reminders",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#818CF8",
+    "background_color":"#818CF8",
+    "icons": [
+      {
+        "src": "app-icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }]
+  }
