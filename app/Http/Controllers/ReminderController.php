@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reminder;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Carbon\Carbon;
 
 class ReminderController extends Controller
 {
@@ -18,6 +19,7 @@ class ReminderController extends Controller
         $reminders = auth()
             ->user()
             ->reminders()
+            ->where('date', '>=', date('Y-m-d H:i'))
             ->orderBy('date')
             ->get();
 
