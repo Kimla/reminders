@@ -18,9 +18,9 @@
                     v-for="reminder in reminders"
                     :key="reminder.id"
                     :href="route('reminders.edit', reminder.id)"
-                    class="bg-white overflow-hidden shadow-sm mb-3 block"
+                    class="bg-white overflow-hidden shadow-sm mb-3 block hover:bg-indigo-100 transition duration-200 ease-in-out"
                 >
-                    <div class="py-2 px-3 bg-white border-gray-200 text-sm border-l-4 border-indigo-400">
+                    <div class="py-2 px-3 text-sm border-l-4 border-indigo-400">
                         {{ new Date(reminder.date).toLocaleDateString() }} - {{ new Date(reminder.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
                         <br>
                         {{ reminder.title }}
