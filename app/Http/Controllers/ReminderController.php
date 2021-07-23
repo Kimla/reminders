@@ -41,13 +41,9 @@ class ReminderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        Reminder::create([
-            'user_id' => auth()->id(),
-            'title' => $request->title,
-            'date' =>  $request->date
-        ]);
+        auth()->user()->reminders()->create($this->validateRequest());
 
         return redirect('/');
     }
@@ -73,14 +69,11 @@ class ReminderController extends Controller
      * @param  \App\Models\Reminder  $reminder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reminder $reminder)
+    public function update(Reminder $reminder)
     {
         $this->authorize('update', $reminder);
 
-        $reminder->title = $request->title;
-        $reminder->date = $request->date;
-
-        $reminder->save();
+        $reminder->update($this->validateRequest());
 
         return redirect('/');
     }
@@ -98,5 +91,12 @@ class ReminderController extends Controller
         $reminder->delete();
 
         return redirect('/');
+    }
+
+    public function validateRequest() {
+        return request()->validate([
+            'title' => ['required', 'max:255'],
+            'date' => ['required'],
+        ]);
     }
 }
