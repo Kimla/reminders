@@ -21,6 +21,11 @@
                                 <breeze-input id="date" type="datetime-local" class="mt-1 block w-full" v-model="form.date" required />
                             </div>
 
+                            <div class="mt-4">
+                                <breeze-label for="description" value="Description" />
+                                <Textarea id="description" class="mt-1 block w-full" v-model="form.description" />
+                            </div>
+
                             <div class="mt-6 flex items-center justify-between">
                                 <Link 
                                     :href="route('reminders.destroy', reminder.id)"
@@ -53,6 +58,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
 import BreezeButton from '@/Components/Button'
 import BreezeInput from '@/Components/Input'
 import BreezeLabel from '@/Components/Label'
+import Textarea from '@/Components/Textarea'
 import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
@@ -61,6 +67,7 @@ export default {
         BreezeButton,
         BreezeInput,
         BreezeLabel,
+        Textarea,
         Link
     },
 
@@ -75,7 +82,8 @@ export default {
         return {
             form: this.$inertia.form({
                 title: this.reminder.title,
-                date: this.reminder.date
+                date: this.reminder.date,
+                description: this.reminder.description || '',
             })
         }
     },

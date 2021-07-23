@@ -21,6 +21,11 @@
                                 <breeze-input id="date" type="datetime-local" class="mt-1 block w-full" v-model="form.date" required />
                             </div>
 
+                            <div class="mt-4">
+                                <breeze-label for="description" value="Description" />
+                                <Textarea id="description" class="mt-1 block w-full" v-model="form.description" />
+                            </div>
+
                             <div class="mt-6 text-right">
                                 <breeze-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                     Create
@@ -39,20 +44,23 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
 import BreezeButton from '@/Components/Button'
 import BreezeInput from '@/Components/Input'
 import BreezeLabel from '@/Components/Label'
+import Textarea from '@/Components/Textarea'
 
 export default {
     components: {
         BreezeAuthenticatedLayout,
         BreezeButton,
         BreezeInput,
-        BreezeLabel
+        BreezeLabel,
+        Textarea
     },
 
     data() {
         return {
             form: this.$inertia.form({
                 title: '',
-                date: null
+                date: null,
+                description: '',
             })
         }
     },

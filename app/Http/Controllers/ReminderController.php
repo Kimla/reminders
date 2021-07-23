@@ -97,6 +97,7 @@ class ReminderController extends Controller
         return request()->validate([
             'title' => ['required', 'max:255'],
             'date' => ['required'],
+            'description' => ['sometimes']
         ]);
     }
 }
