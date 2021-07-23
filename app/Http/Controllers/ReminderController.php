@@ -18,6 +18,7 @@ class ReminderController extends Controller
         $reminders = auth()
             ->user()
             ->reminders()
+            ->where('date', '>=', date('Y-m-d H:i'))
             ->orderBy('date')
             ->get();
 

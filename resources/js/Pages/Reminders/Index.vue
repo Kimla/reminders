@@ -18,10 +18,10 @@
                     v-for="reminder in reminders"
                     :key="reminder.id"
                     :href="route('reminders.edit', reminder.id)"
-                    class="bg-white overflow-hidden shadow-sm mb-3 block"
+                    class="bg-white overflow-hidden shadow-sm mb-3 block hover:bg-indigo-100 transition duration-200 ease-in-out"
                 >
-                    <div class="py-2 px-3 bg-white border-gray-200 text-sm border-l-4 border-indigo-400">
-                        {{ new Date(reminder.date).toLocaleDateString() }} - {{ new Date(reminder.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
+                    <div class="py-2 px-3 text-sm border-l-4 border-indigo-400">
+                        {{ formatDate(reminder.date) }}
                         <br>
                         {{ reminder.title }}
                     </div>
@@ -31,21 +31,20 @@
     </breeze-authenticated-layout>
 </template>
 
-<script>
+<script setup>
 import { Link } from '@inertiajs/inertia-vue3'
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
 
-export default {
-    components: {
-        BreezeAuthenticatedLayout,
-        Link
-    },
-
-    props: {
-        reminders: {
-            type: Array,
-            default: null
-        }
+defineProps({
+    reminders: {
+        type: Array,
+        default: null
     }
+});
+
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+
+    return `${date.toLocaleDateString()} - ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
 }
 </script>
