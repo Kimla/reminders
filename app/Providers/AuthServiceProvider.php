@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\Reminder;
 use App\Policies\ReminderPolicy;
+use App\Models\Note;
+use App\Policies\NotePolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Reminder::class => ReminderPolicy::class,
+        Note::class => NotePolicy::class,
     ];
 
     /**
