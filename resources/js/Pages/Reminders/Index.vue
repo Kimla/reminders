@@ -21,9 +21,13 @@
                     class="bg-white overflow-hidden shadow-sm mb-3 block hover:bg-indigo-100 transition duration-200 ease-in-out"
                 >
                     <div class="py-2 px-3 text-sm border-l-4 border-indigo-400">
-                        {{ formatDate(reminder.date) }}
-                        <br>
-                        {{ reminder.title }}
+                        <span class="capitalize block">
+                            {{ formatDate(reminder.date) }}
+                        </span>
+                        
+                        <span>
+                            {{ reminder.title }}
+                        </span>
                     </div>
                 </Link>
             </div>
@@ -44,7 +48,9 @@ defineProps({
 
 const formatDate = (dateString) => {
     const date = new Date(dateString);
+    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const timeOptions = { hour: '2-digit', minute: '2-digit' };
 
-    return `${date.toLocaleDateString()} - ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    return `${date.toLocaleDateString([], dateOptions)} - ${date.toLocaleTimeString([], timeOptions)}`;
 }
 </script>
