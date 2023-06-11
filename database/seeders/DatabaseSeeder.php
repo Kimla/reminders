@@ -13,6 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\User::factory()->create([
+            'name' => 'Kim',
+            'email' => 'kim@humbleguys.se',
+            'password' => bcrypt('humbleguys'),
+        ]);
+
         $this->call([
             ReminderSeeder::class,
             NoteSeeder::class,
