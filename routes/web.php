@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PushSubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/notes/{note}', [NoteController::class, 'update'])->name('notes.update');
     Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->name('notes.destroy');
 });
+
+Route::post('subscriptions', [PushSubscriptionController::class, 'update']);
 
 require __DIR__.'/auth.php';
