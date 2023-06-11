@@ -48,8 +48,9 @@ class NotifyUsersReminderIsDue extends Command
             ->get()
             ->each(function ($reminder) {
                 $reminder->user->notify(new ReminderIsDue($reminder));
+                $reminder->notified = now();
+                $reminder->save();
             });
-
 
         return 0;
     }
