@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reminder::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
 }
