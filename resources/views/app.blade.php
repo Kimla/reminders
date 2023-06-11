@@ -1,31 +1,65 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="theme-color" content="#818CF8">
-        <link rel="manifest" href="/manifest.json">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <meta
+        name="csrf-token"
+        content="{{ csrf_token() }}"
+    >
+    <meta
+        name="theme-color"
+        content="#818CF8"
+    >
+    <link
+        rel="manifest"
+        href="/manifest.json"
+    >
 
-        <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link
+        rel="shortcut icon"
+        type="image/png"
+        href="/favicon.png"
+    >
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <!-- Fonts -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"
+    >
 
-        <!-- Scripts -->
-        @routes
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        @inertia
+    <!-- Styles -->
+    <link
+        rel="stylesheet"
+        href="{{ mix('css/app.css') }}"
+    >
 
-        @env ('local')
-            <script src="http://localhost:3000/browser-sync/browser-sync-client.js"></script>
-        @endenv
-    </body>
+    <!-- Scripts -->
+    @routes
+    <script
+        src="{{ mix('js/app.js') }}"
+        defer
+    ></script>
+
+    <script>
+        window.Laravel = {!! json_encode([
+            'vapidPublicKey' => config('webpush.vapid.public_key'),
+        ]) !!};
+    </script>
+</head>
+
+<body class="font-sans antialiased">
+    @inertia
+
+    @env('local')
+    <script src="http://localhost:3000/browser-sync/browser-sync-client.js"></script>
+    @endenv
+</body>
+
 </html>
