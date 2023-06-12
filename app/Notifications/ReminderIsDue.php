@@ -34,6 +34,7 @@ class ReminderIsDue extends Notification
     {
         return (new WebPushMessage)
             ->title($this->reminder->title)
+            ->icon('/app-icon.png')
             ->body($this->reminder->date)
             ->action('View reminder', 'view_reminder');
     }
