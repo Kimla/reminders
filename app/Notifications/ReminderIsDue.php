@@ -35,7 +35,7 @@ class ReminderIsDue extends Notification
         return (new WebPushMessage)
             ->title($this->reminder->title)
             ->body($this->reminder->date)
-            ->action('View reminder', route('dashboard'));
+            ->action('View reminder', 'view_reminder');
     }
 
 
